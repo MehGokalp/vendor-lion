@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/card")
 public class CreateController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/create")
+    @RequestMapping(method = RequestMethod.POST, value = "/create")
     public Card findCard() {
         return new Card();
     }

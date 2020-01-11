@@ -2,7 +2,7 @@ CREATE TABLE `currency` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `code` VARCHAR(4) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE);
+  UNIQUE INDEX `code_UNIQUE` (`code` ASC));
 
 CREATE TABLE `card` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -16,9 +16,9 @@ CREATE TABLE `card` (
   `active` TINYINT(1) NULL DEFAULT 1,
   `is_deleted` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `cardNumber_UNIQUE` (`card_number` ASC) VISIBLE,
-  INDEX `currency_id_idx` (`currency_id` ASC) VISIBLE,
-  INDEX `is_deleted_idx` (`is_deleted` ASC) VISIBLE,
+  UNIQUE INDEX `cardNumber_UNIQUE` (`card_number` ASC),
+  INDEX `currency_id_idx` (`currency_id` ASC),
+  INDEX `is_deleted_idx` (`is_deleted` ASC),
   CONSTRAINT `currency_idx`
       FOREIGN KEY (`currency_id`)
           REFERENCES `vendor_lion`.`currency` (`id`)

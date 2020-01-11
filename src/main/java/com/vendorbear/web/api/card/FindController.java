@@ -1,14 +1,10 @@
 package com.vendorbear.web.api.card;
 
-import com.vendorbear.exception.CardNotFoundException;
 import com.vendorbear.schema.Card;
 import com.vendorbear.service.card.FindCardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/card")
@@ -21,7 +17,7 @@ public class FindController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/find/{cardReference}")
-    public ResponseEntity<Card> findCard(@PathVariable(value = "cardReference") String cardReference) throws CardNotFoundException {
+    public ResponseEntity<Card> findCard(@PathVariable(value = "cardReference") String cardReference) {
         try {
             Card card = findCardService.find(cardReference);
 

@@ -1,10 +1,15 @@
 package com.vendorbear.entitiy;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "card")
+@Where(clause = "ISNULL(is_deleted) OR is_deleted = 0")
+@SQLDelete(sql = "UPDATE card SET is_deleted = 1 WHERE id = ?")
 public class Card {
 
     @Id
@@ -12,32 +17,32 @@ public class Card {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "balance")
+    @Column(name = "balance", nullable = false)
     private long balance;
 
     @ManyToOne(targetEntity = Currency.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "currency_id", nullable = false)
     private Currency currency;
 
-    @Column(name = "activationDate")
+    @Column(name = "activation_date", nullable = false)
     private Date activationDate;
 
-    @Column(name = "expireDate")
+    @Column(name = "expire_date", nullable = false)
     private Date expireDate;
 
-    @Column(name = "reference")
+    @Column(name = "reference", nullable = false)
     private String reference;
 
-    @Column(name = "cardNumber")
+    @Column(name = "card_number", nullable = false)
     private String cardNumber;
 
-    @Column(name = "cvc")
+    @Column(name = "cvc", nullable = false)
     private String cvc;
 
-    @Column(name = "active")
-    private boolean active;
+    @Column(name = "active", nullable = false)
+    private boolean active = true;
 
-    @Column(name = "isDeleted")
+    @Column(name = "is_deleted")
     private boolean isDeleted = false;
 
     public long getId() {
