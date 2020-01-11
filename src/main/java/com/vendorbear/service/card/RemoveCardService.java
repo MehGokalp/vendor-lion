@@ -10,7 +10,7 @@ public class RemoveCardService extends AbstractCardService {
         super(cardRepository);
     }
 
-    public Card delete() {
-        return new Card();
+    public boolean remove(String cardReference) {
+        return true;
     }
 }
