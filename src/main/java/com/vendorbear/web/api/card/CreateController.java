@@ -1,16 +1,31 @@
 package com.vendorbear.web.api.card;
 
 import com.vendorbear.schema.Card;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.vendorbear.domain.card.CreateCardService;
+import com.vendorbear.web.api.request.CreateCardRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/card")
 public class CreateController {
+    @Autowired
+    private final CreateCardService createCardService;
+
+    public CreateController(CreateCardService createCardService) {
+        this.createCardService = createCardService;
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/create")
-    public Card findCard() {
-        return new Card();
+    public ResponseEntity<Card> findCard(@ModelAttribute CreateCardRequest createCardRequest) {
+        try {
+            Card card = createCardService.create(createCardRequest.getBalance(), createCardRequest.getActivationDate(), createCardRequest.getExpireDate(), createCardRequest.getCurrency());
+
+            return new ResponseEntity<>(card, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.vendorbear.service.card;
+package com.vendorbear.domain.card;
 
 import com.vendorbear.entitiy.Card;
 import com.vendorbear.repository.CardRepository;

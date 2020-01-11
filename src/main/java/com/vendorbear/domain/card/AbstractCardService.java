@@ -1,4 +1,4 @@
-package com.vendorbear.service.card;
+package com.vendorbear.domain.card;
 
 import com.vendorbear.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;

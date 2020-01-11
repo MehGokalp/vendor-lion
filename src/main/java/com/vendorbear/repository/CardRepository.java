@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CardRepository extends CrudRepository<Card, Long> {
     Card findByReference(String reference);
-
-    void deleteByReference(String reference);
 }

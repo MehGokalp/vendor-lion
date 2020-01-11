@@ -1,7 +1,7 @@
 package com.vendorbear.web.api.card;
 
 import com.vendorbear.schema.Card;
-import com.vendorbear.service.card.FindCardService;
+import com.vendorbear.domain.card.FindCardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

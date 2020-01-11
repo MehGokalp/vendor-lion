@@ -1,7 +1,7 @@
 package com.vendorbear.web.api.card;
 
-import com.vendorbear.service.card.RemoveCardService;
-import com.vendorbear.service.card.exception.CardNotFoundException;
+import com.vendorbear.domain.card.RemoveCardService;
+import com.vendorbear.domain.card.exception.CardNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +30,6 @@ public class RemoveController {
         } catch (CardNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
         }
     }

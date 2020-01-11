@@ -1,4 +1,4 @@
-package com.vendorbear.service.card.exception;
+package com.vendorbear.domain.card.exception;
 
 public class CardNotFoundException extends Exception {
     public CardNotFoundException(String cardReference) {

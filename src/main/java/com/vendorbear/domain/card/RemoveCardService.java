@@ -1,8 +1,8 @@
-package com.vendorbear.service.card;
+package com.vendorbear.domain.card;
 
 import com.vendorbear.entitiy.Card;
 import com.vendorbear.repository.CardRepository;
-import com.vendorbear.service.card.exception.CardNotFoundException;
+import com.vendorbear.domain.card.exception.CardNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
