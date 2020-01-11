@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "182232b3-4a84-4961-ae83-b39e0f455b87",
+		"name": "Vendor Lion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Find",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{wsUri}}/api/card/find/ddf49b87-5f70-4cb6-919f-24ef84361005",
+					"protocol": "http",
+					"host": [
+						"{{wsUri}}"
+					],
+					"path": [
+						"api",
+						"card",
+						"find",
+						"ddf49b87-5f70-4cb6-919f-24ef84361005"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{wsUri}}/api/card/remove/51866393-fbdc-408b-b93b-686463a53a0f",
+					"protocol": "http",
+					"host": [
+						"{{wsUri}}"
+					],
+					"path": [
+						"api",
+						"card",
+						"remove",
+						"51866393-fbdc-408b-b93b-686463a53a0f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "currency",
+							"value": "EUR",
+							"type": "text"
+						},
+						{
+							"key": "activationDate",
+							"value": "2020-03-05",
+							"type": "text"
+						},
+						{
+							"key": "expireDate",
+							"value": "2020-05-04",
+							"type": "text"
+						},
+						{
+							"key": "balance",
+							"value": "5000",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{wsUri}}/api/card/create",
+					"protocol": "http",
+					"host": [
+						"{{wsUri}}"
+					],
+					"path": [
+						"api",
+						"card",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{wsPass}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{wsUser}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "94652a75-6dbe-441c-add3-1d621c63ada6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eca6e747-012e-418b-9da8-557e05027014",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
