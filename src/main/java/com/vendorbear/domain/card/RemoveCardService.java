@@ -8,11 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RemoveCardService extends AbstractCardService {
 
-    final FindCardService findCardService;
-
-    public RemoveCardService(CardRepository cardRepository, FindCardService findCardService) {
+    public RemoveCardService(CardRepository cardRepository) {
         super(cardRepository);
-        this.findCardService = findCardService;
     }
 
     public void remove(String cardReference) throws CardNotFoundException {
