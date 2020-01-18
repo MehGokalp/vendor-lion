@@ -3,7 +3,6 @@ package com.vendorbear.web.api.card;
 import com.vendorbear.schema.Card;
 import com.vendorbear.domain.card.CreateCardService;
 import com.vendorbear.web.api.request.CreateCardRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
