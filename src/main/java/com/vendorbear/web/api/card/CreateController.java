@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/api/card")
 public class CreateController {
-    @Autowired
+
     private final CreateCardService createCardService;
 
     public CreateController(CreateCardService createCardService) {
