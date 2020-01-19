@@ -1,4 +1,4 @@
-package com.vendorbear.web.api.card;
+package com.vendorbear.web.api.action;
 
 import com.vendorbear.domain.card.RemoveCardService;
 import com.vendorbear.domain.card.exception.CardNotFoundException;

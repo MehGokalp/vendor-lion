@@ -1,4 +1,4 @@
-package com.vendorbear.web.api.card;
+package com.vendorbear.web.api.action;
 
 import com.vendorbear.schema.Card;
 import com.vendorbear.domain.card.CreateCardService;

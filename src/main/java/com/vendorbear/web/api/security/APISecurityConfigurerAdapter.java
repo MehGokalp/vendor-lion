@@ -15,11 +15,13 @@ public class APISecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
             .csrf().disable()
             .authorizeRequests().anyRequest().authenticated()
             .and()
-            .httpBasic();
+            .httpBasic()
+        ;
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        // TODO: Fetch authentication users from database
         auth.inMemoryAuthentication()
             .withUser("admin")
             .password("{noop}password")
