@@ -20,8 +20,6 @@ and then the server will start on your 8080 port at localhost.
  
 ## Database schema and fixtures
 Fixtures and database schema sqls are in `src/main/java/resources` folder.
-## API Documentation
-You can access API's documentation at [/doc](http://localhost:8080/doc) path. 
 ## Postman Collection
 Also i added postman collection for current API. You can found them in postman folder.
 ## Contributing
