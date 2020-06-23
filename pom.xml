@@ -8,11 +8,11 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vendor-bear</groupId>
+	<groupId>com.vendorlion</groupId>
 	<artifactId>web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>web</name>
-	<description>Vendor Bear</description>
+	<description>Vendor Lion</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -73,6 +73,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.6-SNAPSHOT</version>
 			</plugin>
 		</plugins>
 	</build>
