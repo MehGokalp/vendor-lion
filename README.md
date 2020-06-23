@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MehGokalp/vendor-lion.svg?branch=master)](https://travis-ci.org/MehGokalp/vendor-lion) [![codecov](https://codecov.io/gh/MehGokalp/vendor-lion/branch/master/graph/badge.svg)](https://codecov.io/gh/MehGokalp/vendor-lion)
+
 # Welcome to VENDOR LION API
 This API allows you to create, remove and list virtual cards. We can think this project as a VCC provider.  
 
@@ -5,7 +7,6 @@ This API allows you to create, remove and list virtual cards. We can think this 
 Clone this project into your computer then run;
 
     mvn install
-    mvn build
     java -jar target/web-0.0.1-SNAPSHOT.jar
 
 and then the server will start on your 8080 port at localhost. 
