@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class CvcNumberGeneratorTest {
 
-    private CvcNumberGenerator cvcNumberGenerator = new CvcNumberGenerator();
+    private final CvcNumberGenerator cvcNumberGenerator = new CvcNumberGenerator();
 
     @Test
     public void testCvcNumberGeneration() {

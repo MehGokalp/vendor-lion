@@ -13,7 +13,7 @@ and then the server will start on your 8080 port at localhost.
 
 ## Technical Stack
 
- - Java 8
+ - Java 15
  - Mysql
  - Spring Framework
  - Spring Boot
