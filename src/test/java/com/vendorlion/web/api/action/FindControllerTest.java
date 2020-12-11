@@ -28,13 +28,13 @@ public class FindControllerTest {
     @Test
     public void testSuccessFindResponse() throws Exception {
         this.mockMvc.perform(
-                    get("/api/card/find/2f9035cc-73f8-4355-b894-79a66d0ff0e9")
+                    get("/api/card/find/65259099-7604-45c1-b43d-99387b409842")
                         .with(httpBasic(this.TEST_AUTH_USER, this.TEST_AUTH_PASSWORD))
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().string(containsString("\"reference\":\"2f9035cc-73f8-4355-b894-79a66d0ff0e9\"")))
+                .andExpect(content().string(containsString("\"reference\":\"65259099-7604-45c1-b43d-99387b409842\"")))
         ;
     }
 

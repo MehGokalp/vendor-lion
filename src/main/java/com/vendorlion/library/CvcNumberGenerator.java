@@ -1,13 +1,10 @@
 package com.vendorlion.library;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class CvcNumberGenerator {
-
-    private Random random = new Random(System.currentTimeMillis());
-
     public int generate() {
-        // 900 means = 999 - 100 + 1 means = generate number between 100 and 999
-        return this.random.nextInt(900);
+        // generate a number between 100 and 999
+        return ThreadLocalRandom.current().nextInt(100, 999 + 1);
     }
 }

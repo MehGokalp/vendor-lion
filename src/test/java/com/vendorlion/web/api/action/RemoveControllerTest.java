@@ -26,7 +26,7 @@ public class RemoveControllerTest {
     @Test
     public void testSuccessCreate() throws Exception {
         this.mockMvc.perform(
-                    delete("/api/card/remove/2f9035cc-73f8-4355-b894-79a66d0ff0e9")
+                    delete("/api/card/remove/65259099-7604-45c1-b43d-99387b409842")
                         .with(httpBasic(this.TEST_AUTH_USER, this.TEST_AUTH_PASSWORD))
                 )
                 .andDo(print())
