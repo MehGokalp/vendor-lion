@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/MehGokalp/vendor-lion.svg?branch=master)](https://travis-ci.org/MehGokalp/vendor-lion) [![codecov](https://codecov.io/gh/MehGokalp/vendor-lion/branch/master/graph/badge.svg)](https://codecov.io/gh/MehGokalp/vendor-lion)
+[![Build Status](https://travis-ci.com/MehGokalp/vendor-lion.svg?branch=master)](https://travis-ci.com/MehGokalp/vendor-lion) [![codecov](https://codecov.io/gh/MehGokalp/vendor-lion/branch/master/graph/badge.svg)](https://codecov.io/gh/MehGokalp/vendor-lion)
 
 # Welcome to VENDOR LION API
 This API allows you to create, remove and list virtual cards. We can think this project as a VCC provider.  
