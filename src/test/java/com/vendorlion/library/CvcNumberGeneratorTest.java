@@ -11,6 +11,9 @@ public class CvcNumberGeneratorTest {
     public void testCvcNumberGeneration() {
         int generated = this.cvcNumberGenerator.generate();
 
-        assertTrue(generated >= 100 && generated < 1000, "Generated cvc number must greater than 100 and lower than 1000.");
+        assertTrue(
+                generated >= 100 && generated < 1000,
+                "Generated cvc number must greater than 100 and lower than 1000."
+        );
     }
 }

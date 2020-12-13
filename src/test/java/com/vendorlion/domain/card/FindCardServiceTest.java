@@ -1,8 +1,9 @@
 package com.vendorlion.domain.card;
 
-import com.vendorlion.entitiy.Currency;
+import com.vendorlion.domain.card.read.CardService;
+import com.vendorlion.entity.Currency;
 import com.vendorlion.repository.CardRepository;
-import com.vendorlion.schema.Card;
+import com.vendorlion.web.create.Response;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -16,7 +17,7 @@ public class FindCardServiceTest {
     @Test
     public void testFind() {
         CardRepository cardRepositoryMock = Mockito.mock(CardRepository.class);
-        com.vendorlion.entitiy.Card testCard = new com.vendorlion.entitiy.Card();
+        com.vendorlion.entity.Card testCard = new com.vendorlion.entity.Card();
 
         int balance = 500;
         Date activationDate = new Date();
@@ -26,33 +27,36 @@ public class FindCardServiceTest {
         String cvc = "500";
         String reference = "ddf49b87-5f70-4cb6-919f-24ef84361005";
 
-        testCard.setCvc(cvc);
-        testCard.setCardNumber(cardNumber);
         Currency currency = new Currency();
         currency.setId(1);
         currency.setCode(currencyCode);
-        testCard.setCurrency(currency);
-        testCard.setReference(reference);
-        testCard.setBalance(balance);
-        testCard.setActivationDate(new java.sql.Date(activationDate.getTime()));
-        testCard.setExpireDate(new java.sql.Date(expireDate.getTime()));
-        testCard.setId(1);
+
+        testCard
+                .setCvc(cvc)
+                .setCardNumber(cardNumber)
+                .setCurrency(currency)
+                .setReference(reference)
+                .setBalance(balance)
+                .setActivationDate(new java.sql.Date(activationDate.getTime()))
+                .setExpireDate(new java.sql.Date(expireDate.getTime()))
+                .setId(1)
+        ;
 
         when(cardRepositoryMock.findByReference(anyString())).thenReturn(testCard);
-        FindCardService findCardService = new FindCardService(cardRepositoryMock);
+        CardService findCardService = new CardService(cardRepositoryMock);
 
-        Card cardSchema = findCardService.find(reference);
+        Response response = findCardService.find(reference);
 
-        assertEquals(balance, cardSchema.getBalance());
-        assertEquals(activationDate.getTime(), cardSchema.getActivationDate().getTime());
-        assertEquals(expireDate.getTime(), cardSchema.getExpireDate().getTime());
-        assertEquals(currencyCode, cardSchema.getCurrency());
+        assertEquals(balance, response.balance);
+        assertEquals(activationDate.getTime(), response.activationDate.getTime());
+        assertEquals(expireDate.getTime(), response.expireDate.getTime());
+        assertEquals(currencyCode, response.currency);
 
-        assertNotNull(cardSchema.getCardNumber());
-        assertEquals(16, cardSchema.getCardNumber().length());
-        assertNotNull(cardSchema.getCvc());
-        assertEquals(3, cardSchema.getCvc().length());
-        assertNotNull(cardSchema.getReference());
+        assertNotNull(response.cardNumber);
+        assertEquals(16, response.cardNumber.length());
+        assertNotNull(response.cvc);
+        assertEquals(3, response.cvc.length());
+        assertNotNull(response.reference);
     }
 
     @Test
@@ -60,9 +64,9 @@ public class FindCardServiceTest {
         CardRepository cardRepositoryMock = Mockito.mock(CardRepository.class);
         when(cardRepositoryMock.findByReference(anyString())).thenReturn(null);
 
-        FindCardService findCardService = new FindCardService(cardRepositoryMock);
+        CardService findCardService = new CardService(cardRepositoryMock);
 
-        Card nullCard = findCardService.find("nonexists");
+        Response nullCard = findCardService.find("nonexists");
 
         assertNull(nullCard);
     }

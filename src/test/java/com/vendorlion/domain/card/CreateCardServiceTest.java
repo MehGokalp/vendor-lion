@@ -1,72 +1,98 @@
 package com.vendorlion.domain.card;
 
+import com.vendorlion.domain.card.create.CardFactory;
+import com.vendorlion.domain.card.create.CardService;
 import com.vendorlion.domain.card.exception.CurrencyNotFoundException;
-import com.vendorlion.entitiy.Currency;
+import com.vendorlion.entity.Currency;
 import com.vendorlion.repository.CardRepository;
 import com.vendorlion.repository.CurrencyRepository;
-import com.vendorlion.schema.Card;
-import com.vendorlion.service.card.Utils;
-
+import com.vendorlion.web.create.Request;
+import com.vendorlion.web.create.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.AdditionalAnswers.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.AdditionalAnswers.returnsFirstArg;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
 
 public class CreateCardServiceTest {
-    private static CreateCardService createCardService;
+  private static CardService createCardService;
 
-    @BeforeAll
-    static void init() {
-        CardRepository cardRepositoryMock = Mockito.mock(CardRepository.class);
-        CurrencyRepository currencyRepositoryMock = Mockito.mock(CurrencyRepository.class);
-        Utils utils = new Utils();
+  @BeforeAll
+  static void init() {
+    CardRepository cardRepositoryMock = Mockito.mock(CardRepository.class);
+    CurrencyRepository currencyRepositoryMock = Mockito.mock(CurrencyRepository.class);
 
-        // Mock card repository's save method
-        when(cardRepositoryMock.save(any())).then(returnsFirstArg());
+    // Mock card repository's save method
+    when(cardRepositoryMock.save(any())).then(returnsFirstArg());
 
-        when(currencyRepositoryMock.findByCode("UNK")).thenReturn(null);
+    when(currencyRepositoryMock.findByCode("UNK")).thenReturn(null);
 
-        when(currencyRepositoryMock.findByCode("EUR")).thenAnswer((invocation) -> {
-            Currency currency = new Currency();
-            currency.setCode(invocation.getArgument(0));
-            currency.setId(1);
+    when(currencyRepositoryMock.findByCode("EUR"))
+        .thenAnswer(
+            (invocation) -> {
+              Currency currency = new Currency();
+              currency.setCode(invocation.getArgument(0));
+              currency.setId(1);
 
-            return currency;
-        });
+              return currency;
+            });
 
-        createCardService = new CreateCardService(cardRepositoryMock, currencyRepositoryMock, utils);
-    }
+    CardFactory cardFactory = new CardFactory();
 
-    @Test
-    public void testCreate() throws CurrencyNotFoundException {
-        int balance = 500;
-        Date activationDate = new Date();
-        Date expireDate = new Date();
-        String currency = "EUR";
+    createCardService = new CardService(cardRepositoryMock, currencyRepositoryMock, cardFactory);
+  }
 
-        Card cardSchema = createCardService.create(balance, activationDate, expireDate, currency);
+  @Test
+  public void testCreate() throws CurrencyNotFoundException {
+    Date activationDate = new Date();
+    LocalDateTime.from(activationDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+        .plusMonths(4);
 
-        assertEquals(balance, cardSchema.getBalance());
-        assertEquals(activationDate.getTime(), cardSchema.getActivationDate().getTime());
-        assertEquals(expireDate.getTime(), cardSchema.getExpireDate().getTime());
-        assertEquals(currency, cardSchema.getCurrency());
+    Date expireDate = (Date) activationDate.clone();
+    LocalDateTime.from(expireDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+        .plusMonths(3);
 
-        assertNotNull(cardSchema.getCardNumber());
-        assertEquals(16, cardSchema.getCardNumber().length());
-        assertNotNull(cardSchema.getCvc());
-        assertEquals(3, cardSchema.getCvc().length());
-        assertNotNull(cardSchema.getReference());
-    }
+    Request createCardRequest = new Request();
 
-    @Test
-    public void testCurrencyNotFound() {
-        assertThrows(CurrencyNotFoundException.class, () -> {
-            createCardService.create(500, new Date(), new Date(), "UNK");
-        });
-    }
+    createCardRequest
+        .setBalance(500)
+        .setActivationDate(activationDate)
+        .setExpireDate(expireDate)
+        .setCurrency("EUR");
+
+    Response response = createCardService.create(createCardRequest);
+
+    assertEquals(createCardRequest.getBalance(), response.balance);
+    assertEquals(
+        createCardRequest.getActivationDate().getTime(), response.activationDate.getTime());
+    assertEquals(createCardRequest.getExpireDate().getTime(), response.expireDate.getTime());
+    assertEquals(createCardRequest.getCurrency(), response.currency);
+
+    assertNotNull(response.cardNumber);
+    assertEquals(16, response.cardNumber.length());
+    assertNotNull(response.cvc);
+    assertEquals(3, response.cvc.length());
+    assertNotNull(response.reference);
+  }
+
+  @Test
+  public void testCurrencyNotFound() {
+    Request createCardRequest = new Request();
+
+    createCardRequest
+        .setBalance(500)
+        .setActivationDate(new Date())
+        .setExpireDate(new Date())
+        .setCurrency("UNK");
+
+    assertThrows(
+        CurrencyNotFoundException.class, () -> createCardService.create(createCardRequest));
+  }
 }
