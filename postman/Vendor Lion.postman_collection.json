@@ -11,16 +11,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{wsUri}}/api/card/find/ddf49b87-5f70-4cb6-919f-24ef84361005",
+					"raw": "http://{{wsUri}}/:reference",
 					"protocol": "http",
 					"host": [
 						"{{wsUri}}"
 					],
 					"path": [
-						"api",
-						"card",
-						"find",
-						"ddf49b87-5f70-4cb6-919f-24ef84361005"
+						":reference"
+					],
+					"variable": [
+						{
+							"key": "reference",
+							"value": "ddf49b87-5f70-4cb6-919f-24ef84361005"
+						}
 					]
 				}
 			},
@@ -32,16 +35,19 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://{{wsUri}}/api/card/remove/51866393-fbdc-408b-b93b-686463a53a0f",
+					"raw": "http://{{wsUri}}/:reference",
 					"protocol": "http",
 					"host": [
 						"{{wsUri}}"
 					],
 					"path": [
-						"api",
-						"card",
-						"remove",
-						"51866393-fbdc-408b-b93b-686463a53a0f"
+						":reference"
+					],
+					"variable": [
+						{
+							"key": "reference",
+							"value": "51866393-fbdc-408b-b93b-686463a53a0f"
+						}
 					]
 				}
 			},
@@ -52,12 +58,6 @@
 			"request": {
 				"method": "POST",
 				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					},
 					{
 						"key": "Accept",
 						"value": "application/json",
@@ -90,20 +90,18 @@
 					],
 					"options": {
 						"raw": {
-							"language": "json"
+							"language": "xml"
 						}
 					}
 				},
 				"url": {
-					"raw": "http://{{wsUri}}/api/card/create",
+					"raw": "http://{{wsUri}}/",
 					"protocol": "http",
 					"host": [
 						"{{wsUri}}"
 					],
 					"path": [
-						"api",
-						"card",
-						"create"
+						""
 					]
 				}
 			},
