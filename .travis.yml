@@ -1,8 +1,17 @@
+sudo: false
 language: java
+
+dist: xenial
+
+services:
+  - mysql
 
 jdk:
   - openjdk15
   - oraclejdk15
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -f target/site/jacoco/jacoco.xml
+
+before_install:
+  - bash .travis-ci/database.sh
