@@ -10,8 +10,11 @@ jdk:
   - openjdk15
   - oraclejdk15
 
+script:
+  - mvn clean package
+
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -f target/site/jacoco/jacoco.xml
+  - bash <(curl -s https://codecov.io/bash)
 
 before_install:
   - bash .travis-ci/database.sh
