@@ -65,8 +65,8 @@
 					}
 				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
+					"mode": "urlencoded",
+					"urlencoded": [
 						{
 							"key": "currency",
 							"value": "EUR",
@@ -90,7 +90,7 @@
 					],
 					"options": {
 						"raw": {
-							"language": "xml"
+							"language": "json"
 						}
 					}
 				},
@@ -127,7 +127,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "94652a75-6dbe-441c-add3-1d621c63ada6",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -137,13 +136,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "eca6e747-012e-418b-9da8-557e05027014",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
